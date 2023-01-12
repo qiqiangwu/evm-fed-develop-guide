@@ -1,8 +1,28 @@
+<!-- vscode-markdown-toc -->
+* 1. [术语](#术语)
+  * 1.1. [命名规范](#命名规范)
+  * 1.2. [文件类型](#文件类型)
+  * 1.3. [可创建目录类型](#可创建目录类型)
+* 2. [命名](#命名)
+  * 2.1. [文件夹命名](#文件夹命名)
+  * 2.2. [文件命名](#文件命名)
+  * 2.3. [标识符命名](#标识符命名)
+* 3. [目录结构](#目录结构)
+  * 3.1. [index.ts](#index.ts)
+  * 3.2. [创建目录和文件](#创建目录和文件)
+* 4. [svn 忽略文件](#svn-忽略文件)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
 # React Native 开发指南
 
-## 术语
+##  1. <a name='术语'></a>术语
 
-### 命名规范
+###  1.1. <a name='命名规范'></a>命名规范
 
 常见命名规范，分为以下几种：
 
@@ -10,7 +30,7 @@
 - camelCase：驼峰命名法，第一个单词首字母小写，第二个单词首字母大写，例如：firstName
 - PascalCase：帕斯卡命名法（俗称大驼峰命名法），每个单词首字母大写，例如：FirstName
 
-### 文件类型
+###  1.2. <a name='文件类型'></a>文件类型
 
 - helper 一般针对特定项目的辅助函数，通用性不及 util
 - util 通用工具函数
@@ -21,19 +41,19 @@
 - dao 用于 Realm 数据访问文件
 - schema 用于定义 Realm 数据格式文件
 
-### 可创建目录类型
+###  1.3. <a name='可创建目录类型'></a>可创建目录类型
 
-- components - 组件文件，可用于公共组件或者页面目录下
+- components - react 组件文件，可用于公共组件或者页面目录下
 - assets - 资源文件，可以参考具体使用方式建立
 - slices - redux slice 文件，一般建立在页面或 redux 目录下
 
-## 命名
+##  2. <a name='命名'></a>命名
 
-### 文件夹命名
+###  2.1. <a name='文件夹命名'></a>文件夹命名
 
 文件夹命名采用 kebab-case 命名法
 
-### 文件命名
+###  2.2. <a name='文件命名'></a>文件命名
 
 React 组件文件命名采用 PascalCase 命名法，其他文件采用 kebab-case 命名法
 
@@ -41,7 +61,7 @@ React 组件文件命名采用 PascalCase 命名法，其他文件采用 kebab-c
 
 类型文件夹采用复数形式，例如：components、assets、slices 等
 
-### 标识符命名
+###  2.3. <a name='标识符命名'></a>标识符命名
 
 - 常量命名  
   全部大写，多个单词用下划线连接
@@ -49,7 +69,7 @@ React 组件文件命名采用 PascalCase 命名法，其他文件采用 kebab-c
 - 变量  
   使用 CamelCase 命名法
 
-## 目录结构
+##  3. <a name='目录结构'></a>目录结构
 
 ```
 video_meeting_public
@@ -101,8 +121,29 @@ video_meeting_public
 ├─__tests__ - 测试代码目录
 ```
 
-### 创建目录和文件
+###  3.1. <a name='index.ts'></a>index.ts
+
+**强制**禁止使用 index.ts
+
+###  3.2. <a name='创建目录和文件'></a>创建目录和文件
 
 - src/screens 页面目录  
-  按照页面建立子目录  
-  页面子目录可以包含 components、slices、assets
+   **建议**按照页面建立子目录  
+   页面子目录可以包含 components、slices、assets 和特性文件夹
+
+  例子：
+
+  ```
+  add-friend - 添加好友页面目录
+  ├─AddFriend.tsx - 添加好友首页组件
+  ├─by-account - 特性文件夹，表示通过用户账号添加好友页面
+  |     ├─ByAccount.tsx
+  |     ├─slices - 添加好友页面redux slice
+  |     |   ├─apply-friend.slice.ts
+  |     |   └search-user-by-phone.slice.ts
+  ├─assets - 添加好友资源目录
+  |   ├─navigation_add_maillist.png
+  |   └navigation_add_search.png
+  ```
+
+##  4. <a name='svn-忽略文件'></a>svn 忽略文件
