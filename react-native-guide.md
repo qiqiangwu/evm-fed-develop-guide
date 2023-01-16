@@ -1,17 +1,20 @@
 <!-- vscode-markdown-toc -->
-
-- 1. [术语](#术语)
-  - 1.1. [命名规范](#命名规范)
-  - 1.2. [文件类型](#文件类型)
-  - 1.3. [可创建目录类型](#可创建目录类型)
-- 2. [命名](#命名)
-  - 2.1. [文件夹命名](#文件夹命名)
-  - 2.2. [文件命名](#文件命名)
-  - 2.3. [标识符命名](#标识符命名)
-- 3. [目录结构](#目录结构)
-  - 3.1. [index.ts](#index.ts)
-  - 3.2. [创建目录和文件](#创建目录和文件)
-- 4. [svn 忽略文件](#svn-忽略文件)
+* 1. [术语](#术语)
+  * 1.1. [命名规范](#命名规范)
+  * 1.2. [文件类型](#文件类型)
+  * 1.3. [可创建目录类型](#可创建目录类型)
+* 2. [命名](#命名)
+  * 2.1. [文件夹命名](#文件夹命名)
+  * 2.2. [文件命名](#文件命名)
+  * 2.3. [标识符命名](#标识符命名)
+  * 2.4. [react 组件](#react-组件)
+  * 2.5. [redux 命名](#redux-命名)
+  * 2.6. [导航](#导航)
+  * 2.7. [remote 接口请求](#remote-接口请求)
+* 3. [目录结构](#目录结构)
+  * 3.1. [index.ts](#index.ts)
+  * 3.2. [创建目录和文件](#创建目录和文件)
+* 4. [svn 忽略文件](#svn-忽略文件)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -21,9 +24,9 @@
 
 # React Native 开发指南
 
-## 1. <a name='术语'></a>术语
+##  1. <a name='术语'></a>术语
 
-### 1.1. <a name='命名规范'></a>命名规范
+###  1.1. <a name='命名规范'></a>命名规范
 
 常见命名规范，分为以下几种：
 
@@ -32,7 +35,7 @@
 - PascalCase：帕斯卡命名法（俗称大驼峰命名法），每个单词首字母大写，例如：FirstName
 - under_score_case：下划线命名法
 
-### 1.2. <a name='文件类型'></a>文件类型
+###  1.2. <a name='文件类型'></a>文件类型
 
 - helper 一般针对特定项目的辅助函数，通用性不及 util
 - util 通用工具函数
@@ -43,19 +46,19 @@
 - dao 用于 Realm 数据访问文件
 - schema 用于定义 Realm 数据格式文件
 
-### 1.3. <a name='可创建目录类型'></a>可创建目录类型
+###  1.3. <a name='可创建目录类型'></a>可创建目录类型
 
 - components - react 组件文件，可用于公共组件或者页面目录下
 - assets - 资源文件，可以参考具体使用方式建立
 - slices - redux slice 文件，一般建立在页面或 redux 目录下
 
-## 2. <a name='命名'></a>命名
+##  2. <a name='命名'></a>命名
 
-### 2.1. <a name='文件夹命名'></a>文件夹命名
+###  2.1. <a name='文件夹命名'></a>文件夹命名
 
 文件夹命名采用 kebab-case 命名法
 
-### 2.2. <a name='文件命名'></a>文件命名
+###  2.2. <a name='文件命名'></a>文件命名
 
 React 组件文件命名采用 PascalCase 命名法，其他文件采用 kebab-case 命名法
 
@@ -63,7 +66,7 @@ React 组件文件命名采用 PascalCase 命名法，其他文件采用 kebab-c
 
 类型文件夹采用复数形式，例如：components、assets、slices 等
 
-### 2.3. <a name='标识符命名'></a>标识符命名
+###  2.3. <a name='标识符命名'></a>标识符命名
 
 - 常量命名  
   全部大写，多个单词用下划线连接
@@ -73,7 +76,7 @@ React 组件文件命名采用 PascalCase 命名法，其他文件采用 kebab-c
 - 属性  
   使用 CamelCase 命名法
 
-### react 组件
+###  2.4. <a name='react-组件'></a>react 组件
 
 使用 PascalCase 命名法
 
@@ -92,9 +95,9 @@ React 组件文件命名采用 PascalCase 命名法，其他文件采用 kebab-c
   export default AudioSettingModal
   ```
 
-### redux 命名
+###  2.5. <a name='redux-命名'></a>redux 命名
 
-- state 接口命名  
+- state 类型命名  
   特性名称+State 后缀
 - 初始状态变量  
   统一使用 initialState 变量名
@@ -102,62 +105,47 @@ React 组件文件命名采用 PascalCase 命名法，其他文件采用 kebab-c
   特性名称+Slice 后缀
 - slice name
   特性名称 CamelCase 命名法
-- action
-  非导出 action  
-  直接有 slice.actions 结构  
-  导出 action  
-  非导出 action+Action 后缀
-- thunk 变量命名  
-  特性名称+Thunk 后缀
-- thunk typePrefix
-  同 thunk 变量名称
-- slice reducer 变量名称
-  特性名称+Reducer 后缀  
-  先定义 reducer 变量，然后默认导出
-- store reducer 属性名  
-  特性名称，例如：appData、user
+- 导出 actions 对象名称
+  特性名称+Actions 后缀
+- thunk 变量名称
+  按照执行动作命名
+- thunk typePrefix 命名
+  特性名称/动作，例如：app/getLocal
 
 注：特性名称命名参考变量或属性命名
 
 例子：
 
 ```
-// src/redux/slices/app-data.slice.ts
+// src/redux/slices/app.slice.ts
 // state 接口
-interface AppDataState{
+interface AppState{
   ...
 }
 // 初始状态变量
-const initialState: AppDataState = {
+const initialState: AppState = {
   isFirstInstall: true,
 };
 // slice 变量名称
-const appDataSlice = createSlice({
+const appSlice = createSlice({
   // slice name
-  name: 'appData'
+  name: 'app'
 });
 
-// actions
-// 非导出actions
-const {setIsFirstInstall} = appDataSlice.actions;
-// 导出actions
-export const setIsFirstInstallAction = setIsFirstInstall;
+// 导出 actions 对象名称
+export const appActions = appSlice.actions;
 
-// thunk变量命名
-// thunk
-export const getAppDataThunk = createAsyncThunk<void, void, {dispatch: AppDispatch}>(
-    // thunk typePrefix
-    'getAppDataThunk',
-    async (_, {dispatch}) => {
-      ...
-    });
-// slice reducer 变量名称
-// reducer
-const appDataReducer = appDataSlice.reducer;
-export default appDataReducer;
+// thunk 变量名称
+export const getAppLocal = createAsyncThunk<
+  void,
+  void,
+  {dispatch: AppDispatch}
+>('app/getLocal', async (_, {dispatch}) => {
+  ...
+});
 ```
 
-### 导航
+###  2.6. <a name='导航'></a>导航
 
 - 路由名称  
   路由名称采用下划线命名法，例如：bottom_tab，change_user_name，login
@@ -170,7 +158,32 @@ export default appDataReducer;
   export type LoginScreenProp = NativeStackScreenProps<RootParamList, 'login'>;
   ```
 
-## 3. <a name='目录结构'></a>目录结构
+###  2.7. <a name='remote-接口请求'></a>remote 接口请求
+
+- 接口 model 命名  
+   一般接口名称+关键字
+
+  ```
+  // 接口返回正确类型
+  export interface LoginForMobileResult {
+  ...
+  }
+
+  // 接口返回错误类型
+  export interface LoginForMobileError {
+  ...
+  }
+
+  // 接口返回类型
+  export type LoginForMobileResponse = LoginForMobileResult | LoginForMobileError;
+  ```
+
+- service 类命名  
+  名称+Service 后缀，例如：CPNSService
+- service 方法命名  
+  统一使用后台接口名称，可能冲突可添加限定名
+
+##  3. <a name='目录结构'></a>目录结构
 
 ```
 video_meeting_public
@@ -222,11 +235,11 @@ video_meeting_public
 ├─__tests__ - 测试代码目录
 ```
 
-### 3.1. <a name='index.ts'></a>index.ts
+###  3.1. <a name='index.ts'></a>index.ts
 
 **强制**禁止使用 index.ts
 
-### 3.2. <a name='创建目录和文件'></a>创建目录和文件
+###  3.2. <a name='创建目录和文件'></a>创建目录和文件
 
 - src/screens 页面目录  
    **建议**按照页面类型建立子目录  
@@ -247,4 +260,4 @@ video_meeting_public
   |   └navigation_add_search.png
   ```
 
-## 4. <a name='svn-忽略文件'></a>svn 忽略文件
+##  4. <a name='svn-忽略文件'></a>svn 忽略文件
